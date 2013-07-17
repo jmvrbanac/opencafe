@@ -1092,8 +1092,9 @@ class CCRunner(object):
 
                     for module_path in builder.get_modules(test_path):
                         suite = builder.get_tests(module_path)
-                        master_suite.addTests(suite)
-                        test_suites.append(suite)
+                        if suite:
+                            master_suite.addTests(suite)
+                            test_suites.append(suite)
 
             if cl_args.parallel:
                 exit_code = self.run_parallel(
