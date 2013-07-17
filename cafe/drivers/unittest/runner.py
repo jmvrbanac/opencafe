@@ -936,7 +936,12 @@ class CCRunner(object):
                                              total_execution_time)
             all_results = result_parser.gather_results()
 
+            # Temporary until I can get some of this xUnit stuff fixed.
+            xml_filename = os.path.join(os.getcwd(), 'cc_result.xml')
+            result_parser.generate_xml_report(filename=xml_filename)
+
             # Convert Result objects to dicts for serialization
+
             json_results = []
             for r in all_results:
                 json_results.append(r.__dict__)

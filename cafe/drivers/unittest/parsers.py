@@ -111,7 +111,7 @@ class SummarizeResults(object):
                           self.get_errored_tests() + self.get_skipped_tests())
         return executed_tests
 
-    def generate_xml_report(self):
+    def generate_xml_report(self, filename='cc_engine.xml'):
         executed_tests = self.gather_results()
         summary_result = self.summary_result()
         num_tests = len(vars(self.master_testsuite).get('_tests'))
@@ -151,9 +151,9 @@ class SummarizeResults(object):
                     testcase_tag.attrib['result'] = "PASSED"
 
         # TODO(dwalleck) Re-enable xunit results, needs refactoring
-        #file = open(self.file_path + "/cc_result.xml", 'wb')
-        #ET.ElementTree(root).write(file)
-        #file.close()
+        file = open(filename, 'wb')
+        ET.ElementTree(root).write(file)
+        file.close()
 
 
 class Result(object):
