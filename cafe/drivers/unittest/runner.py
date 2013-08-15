@@ -921,6 +921,10 @@ class OpenCafeRunner(object):
                 json.dump(json_results, result_file)
 
         log_results(result)
+        # Temporary until I can get some of this xUnit stuff fixed.
+        xml_filename = os.path.join(os.getcwd(), 'cc_result.xml')
+        result_parser.generate_xml_report(filename=xml_filename)
+
         if not result.wasSuccessful():
             exit_code = 1
 
